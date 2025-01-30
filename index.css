@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+}
+
+.top {
+    position: absolute;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 20%;
+}
+
+.top a {
+    margin-left: 2%;
+}
+
+.icon {
+    width: 10vw;
+    min-width: 70px;
+    height: 10vw;
+    min-height: 70px;
+}
+
+.icon-container {
+    background-image: url('./src/logo.svg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    height: 100%;
+}
+
+.icon:hover {
+    animation: 1s icon linear;
+}
+
+@keyframes icon {
+    0%{transform: rotate(0deg) scale(1);}
+    25%{transform: rotate(25deg) scale(1.2);}
+    50%{transform: rotate(0deg) scale(1.2);}
+    75%{transform: rotate(-25deg) scale(1.2);}
+    100%{transform: rotate(0deg) scale(1);}
+}
+
+.top a {
+    margin-right: 2%;
+    
+    text-decoration: none;
+    color: black;
+
+    width: auto;
+    height: auto;
+}
+
+.sign-in {
+    border-radius: 12px;
+    border: 2.9px solid black;
+
+    padding: 10px 30px;
+
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+    transition: all ease-in-out 0.3s;
+
+    width: auto;
+    height: auto;
+}
+
+.sign-in:hover {
+    background-color: black;
+    color: white;
+}
+
+.sign-in h1 {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(22px, 2.8vw, 100px);
+    font-weight: normal;
+}
+
+.center {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    position: absolute;
+    top: 0%;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+}
+
+.center h1 {
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(30px, 6vw, 200px);
+    font-weight: normal;
+    cursor: default;
+}
+
+h1 span {
+    color: rgb(105,105,105,100);
+}
+
+.back-own {
+    background-color:rgb(217, 217, 217);
+    border-radius: 1vw;
+    
+    transform: rotate(-15deg);
+    display: inline-block;
+
+    width:auto;
+    height: auto;
+}
+
+.back-own div {
+    transform: rotate(15deg);
+}
+
+.back-everything {
+    background-color:rgb(217, 217, 217);
+    border-radius: 1vw;
+
+
+    display: inline-block;
+
+    width:auto;
+    height: auto;
+}
+
+.gif {
+    background-image: url('./src/gif-hero.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60vw;
+
+    width: 35%;
+    min-width: 150px;
+    height: 50%;
+    min-height: 150px;
+}
+
+@media (max-width:501px){
+    .gif {
+        display: none;
+    }
+    .center {
+        justify-content: flex-start;
+        padding-left: 8px;
+    }
+}
+
+@media(min-width:1440px) {
+    .sign-in {
+        border: 3.6px solid black;
+        border-radius: 20px;
+    }
+}
