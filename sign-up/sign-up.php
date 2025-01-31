@@ -31,7 +31,7 @@
                             <div class="icon-username"></div>
                             <label class="label"> Username</label><br>
                         </div>
-                        <input class="input" type="text" maxlength="30" autofocus>
+                        <input class="input" type="text" maxlength="30">
                         <div class="box">
                             <div class="icon-email"></div>
                             <label class="label"> Email</label><br>

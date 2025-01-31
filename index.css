@@ -69,7 +69,7 @@
 
 .sign-in {
     border-radius: 12px;
-    border: 2.9px solid black;
+    border: clamp(2px, 0.1vw, 6px) solid black;
 
     padding: 10px 30px;
 
@@ -90,7 +90,7 @@
 
 .sign-in h1 {
     font-family: "Inter", sans-serif;
-    font-size: clamp(22px, 2.8vw, 100px);
+    font-size: clamp(22px, 3vw, 100px);
     font-weight: normal;
 }
 
@@ -121,7 +121,7 @@ h1 span {
 
 .back-own {
     background-color:rgb(217, 217, 217);
-    border-radius: 1vw;
+    border-radius: 1.3vw;
     
     transform: rotate(-15deg);
     display: inline-block;
@@ -136,7 +136,7 @@ h1 span {
 
 .back-everything {
     background-color:rgb(217, 217, 217);
-    border-radius: 1vw;
+    border-radius: 1.3vw;
 
 
     display: inline-block;
@@ -161,9 +161,9 @@ h1 span {
     .gif {
         display: none;
     }
-    .center {
-        justify-content: flex-start;
-        padding-left: 8px;
+    .center h1 {
+        font-size: 13vw;
+        text-align: center;
     }
 }
 
@@ -171,5 +171,8 @@ h1 span {
     .sign-in {
         border: 3.6px solid black;
         border-radius: 20px;
+    }
+    .sign-in h1 {
+        font-size: 4.3vw;
     }
 }

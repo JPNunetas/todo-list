@@ -116,7 +116,7 @@
 
 .signIn-center form label {
     font-family: "Inter", sans-serif;
-    font-size: clamp(18px, 2.8vw, 70px);
+    font-size: clamp(25px, 3vw, 70px);
 }
 
 .last-label {
@@ -130,11 +130,13 @@
 
 .last-label label span {
     color: rgb(105,105,105,100);
+    font-size: clamp(14px, 2vw, 70px);
 }
 
 .last-label label a {
     text-decoration: none;
     color: black;
+    font-size: clamp(14px, 2vw, 70px);
 
     display: inline-flex;
     justify-content: center;
@@ -151,11 +153,11 @@
 
 form input {
     font-family: "Inter", sans-serif;
-    font-size: clamp(18px, 2.8vw, 70px);
+    font-size: clamp(18px, 2.2vw, 70px);
     padding: 10px 15px;
 
     background-color: lightgrey;
-    border: clamp(3px, 0.1vw, 6px) solid black;
+    border: clamp(2px, 0.1vw, 6px) solid black;
     border-radius: 8px;
 
     width: 100%;
@@ -209,10 +211,10 @@ form input {
     right: 15px;
     cursor: pointer;
 
-    width: 3vw;
-    height: 3vw;
-    min-width: 30px;
-    min-height: 30px;
+    width: 2.8vw;
+    height: 2.8vw;
+    min-width: 25px;
+    min-height: 25px;
 }
 
 .icon-email {

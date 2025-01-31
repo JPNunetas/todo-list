@@ -30,7 +30,7 @@
                             <div class="icon-email"></div>
                             <label class="label"> Email</label><br>
                         </div>
-                        <input class="input" type="email" maxlength="30" autofocus>
+                        <input class="input" type="email" maxlength="30">
                         <div class="box">
                             <div class="icon-password"></div>
                             <label class="label"> Password</label><br>
