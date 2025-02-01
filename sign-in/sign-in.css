@@ -242,7 +242,7 @@ form input {
 }
 
 .show {
-    background-image: url('../src/output-onlinegiftools.gif');
+    background-image: url('../src/show.png');
 }
 
 .signIn-center form .error {
@@ -256,17 +256,14 @@ form input {
 
 @media(min-width:1600px) {
     .signIn-center form input {
-        font-size: clamp(18px, 3.6vw, 700px);
         border-radius: 20px;
-        padding: 20px 20px;
+        padding: 15px 15px;
     }
     .signIn-center form label {
-        font-size: clamp(18px, 3.6vw, 700px);
+        font-size: clamp(18px, 3vw, 700px);
     }
     .signIn-center form #submit {
-        font-size: clamp(18px, 3.6vw, 700px);
-        border-radius: 40px;
-        padding: 20px 20px;
+        border-radius: 20px;
     }
 }
 
