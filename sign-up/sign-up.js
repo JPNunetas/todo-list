@@ -34,7 +34,7 @@ submit.addEventListener("click", (index)=> {
     if (x[1].value == "") {
         index.preventDefault();
         x[1].placeholder = "Este campo está vazio";
-        x[1].classList.add("error");
+        x[1].classList.add("error2");
     }
     if (x[1].value == "'@' em falta") {
         index.preventDefault();
@@ -47,14 +47,14 @@ submit.addEventListener("click", (index)=> {
             rewrite = x[1].value;
             index.preventDefault();
             x[1].value = "'@' em falta";
-            x[1].classList.add("error");    
+            x[1].classList.add("error2");    
         }
     }  
     if (x[1].value.startsWith("@") || x[1].value.endsWith("@")) {
         rewrite = x[1].value;
         index.preventDefault();
         x[1].value = "Email inválido";
-        x[1].classList.add("error");
+        x[1].classList.add("error2");
     }
 
     if (x[2].value == "") {
@@ -62,23 +62,29 @@ submit.addEventListener("click", (index)=> {
         x[2].placeholder = "Este campo está vazio";
         x[2].classList.add("error2");
     } 
+    if (!(x[2].value == "") && x[2].value.length < 8) {
+        index.preventDefault();
+        x[2].value = "";
+        x[2].placeholder = "Mínimo de 8 caracteres";
+        x[2].classList.add("error2");
+    }
 
     if (x[3].value == "") {
-        if (x[3].placeholder == "Password Errada") {
-            index.preventDefault();
-        }
-        if (!(x[3].placeholder == "Password Errada")) {
-            index.preventDefault();
-            x[3].placeholder = "Este campo está vazio";
-            x[3].classList.add("error2");
-        }
-        
+        index.preventDefault();
+        x[3].placeholder = "Este campo está vazio";
+        x[3].classList.add("error2");    
     }
-    if (x[2].value != x[3].value) {
+    if (!(x[3].value == "") && x[3].value.length < 8) {
+        index.preventDefault();
+        x[3].value = "";
+        x[3].placeholder = "Mínimo de 8 caracteres";
+        x[3].classList.add("error2");
+    }
+    if (x[2].value != x[3].value && x[3].value.length >= 8) {
             index.preventDefault();
             x[3].value = "";
             x[3].classList.add("error2");
-            x[3].placeholder = "*Password Errada"
+            x[3].placeholder = "Password Errada";
     }
 });
 
@@ -100,48 +106,11 @@ x[3].addEventListener("focus", ()=> {
     x[3].classList.remove("error2");    
 }); 
 
-if (x[0].value == "") {
-    y[0].innerHTML = "Username <span class='error2'>⁕</span>";
-}
-x[0].addEventListener("blur", ()=> {
-    if (x[0].value == "") {
-        y[0].innerHTML = "Username <span class='error2'>⁕</span>";
-    }
-});
-x[0].addEventListener("keydown", ()=> {
-    y[0].innerHTML = "Username";
-});
-if (x[1].value == "") {
-    y[1].innerHTML = "Email <span class='error2'>⁕</span>";
-}
+y[0].innerHTML = "Username <span class='error2'>⁕</span>";
+y[1].innerHTML = "Email <span class='error2'>⁕</span>";
+y[2].innerHTML = "Password <span class='error2'>⁕</span>";
+y[3].innerHTML = "Confirm-Password <span class='error2'>⁕</span>";
+
 x[1].addEventListener("blur", ()=> {
-    if (x[1].value == "") {
-        y[1].innerHTML = "Email <span class='error2'>⁕</span>";
-    }
     rewrite = x[1].value;
-});
-x[1].addEventListener("keydown", ()=> {
-    y[1].innerHTML = "Email";
-});
-if (x[2].value == "") {
-    y[2].innerHTML = "Password <span class='error2'>⁕</span>";
-}
-x[2].addEventListener("blur", ()=> {
-    if (x[2].value == "") {
-        y[2].innerHTML = "Password <span class='error2'>⁕</span>";
-    }
-});
-x[2].addEventListener("keydown", ()=> {
-    y[2].innerHTML = "Password";
-});
-if (x[3].value == "") {
-    y[3].innerHTML = "Confirm-Password <span class='error2'>⁕</span>";
-}
-x[3].addEventListener("blur", ()=> {
-    if (x[3].value == "") {
-        y[3].innerHTML = "Confirm-Password <span class='error2'>⁕</span>";
-    }
-});
-x[3].addEventListener("keydown", ()=> {
-    y[3].innerHTML = "Confirm-Password";
 });
