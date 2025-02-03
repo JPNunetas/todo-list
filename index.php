@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="index.css">
-        <link rel="shortcut icon" href="./src/logo.svg" type="image/x-icon">
+        <link rel="shortcut icon" href="./src/img/logo.svg" type="image/x-icon">
         <title>ToDoList</title>
     </head>
     <body>

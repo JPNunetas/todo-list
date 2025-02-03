@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="sign-in.css">
-        <link rel="shortcut icon" href="../src/logo.svg" type="image/x-icon">
+        <link rel="shortcut icon" href="../src/img/logo.svg" type="image/x-icon">
 
         <title>Sign In</title>
     </head>

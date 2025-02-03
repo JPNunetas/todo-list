@@ -6,7 +6,7 @@
 
         <link rel="stylesheet" href="sign-up.css">
         <link rel="stylesheet" href="../sign-in/sign-in.css">
-        <link rel="shortcut icon" href="../src/logo.svg" type="image/x-icon">
+        <link rel="shortcut icon" href="../src/img/logo.svg" type="image/x-icon">
 
         <title>Sign In</title>
     </head>
