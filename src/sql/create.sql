@@ -17,7 +17,7 @@ CREATE TABLE persons (
 CREATE TABLE users (
 	u_id INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
     u_username VARCHAR(50) NOT NULL,
-    u_email VARCHAR(255) NOT NULL,
+    u_email VARCHAR(100) NOT NULL,
     
     create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -113,22 +113,22 @@ INNER JOIN users ON accounts.u_id = users.u_id
 INNER JOIN passwords ON accounts.pw_id = passwords.pw_id;
 END $
 
-CALL all_users();
-
 -- 2. Ver um utilizador em especifico
 
 DELIMITER $
-CREATE PROCEDURE get_user(u_id INT)
+CREATE PROCEDURE get_user(e VARCHAR(100))
 BEGIN
-SELECT accounts.u_id, persons.p_name, persons.p_lastname, passwords.pw_code, accounts.create_at, accounts.update_at 
-FROM accounts
-INNER JOIN persons ON accounts.p_id = persons.p_id
-INNER JOIN users ON accounts.u_id = users.u_id
-INNER JOIN passwords ON accounts.pw_id = passwords.pw_id
-WHERE accounts.u_id = u_id;
+	SET @userID = (
+		SELECT get_user_id(e)
+    );
+    
+	SELECT accounts.u_id, persons.p_name, persons.p_lastname, passwords.pw_code, accounts.create_at, accounts.update_at 
+	FROM accounts
+	INNER JOIN persons ON accounts.p_id = persons.p_id
+	INNER JOIN users ON accounts.u_id = users.u_id
+	INNER JOIN passwords ON accounts.pw_id = passwords.pw_id
+	WHERE accounts.u_id = @userID;
 END $
-
-CALL get_user(1);
 
 -- 3. Ver todas as listas
 
@@ -138,38 +138,40 @@ BEGIN
 SELECT l_id, l_name FROM lists; 
 END $
 
-CALL all_lists();
-
 -- 4. Ver uma lista em especifico e os seus respetivos tópicos
 
 DELIMITER $
-CREATE PROCEDURE get_list(lisID INT)
+CREATE PROCEDURE get_list(e VARCHAR(255), ln VARCHAR (75))
 BEGIN
-SELECT lists.l_id, lists.l_name, topics.t_id, topics.t_text 
-FROM topics
-INNER JOIN lists ON topics.l_id = lists.l_id
-WHERE lists.l_id = lisID; 
-END $
+	SET @u_id = (
+		SELECT get_user_id(e)
+    );
 
-CALL get_list(1);
+	SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @u_id AND l_name = ln 
+    );
+    
+    IF @list_id IS NOT NULL THEN
+		SELECT topics.t_text AS topics_columns FROM lists 
+		INNER JOIN topics ON topics.l_id = lists.l_id
+		WHERE lists.l_id = @list_id;
+	END IF;
+END $
 
 -- 5. Mostrar um utilizador em especifico com o seu ID, Username e mostrar os ID's das Listas e o nome delas que ele possui
 
 DELIMITER $
-CREATE PROCEDURE get_user_lists(u_id INT)
+CREATE PROCEDURE get_user_lists(e VARCHAR (255))
 BEGIN
-SELECT accounts.u_id, users.u_username, lists.l_id, lists.l_name, topics.t_id, topics.t_text 
-FROM accounts
-INNER JOIN persons ON accounts.p_id = persons.p_id
-INNER JOIN users ON accounts.u_id = users.u_id
-INNER JOIN passwords ON accounts.pw_id = passwords.pw_id
-INNER JOIN lists ON lists.u_id = accounts.u_id
-INNER JOIN topics ON topics.l_id = lists.l_id
-WHERE accounts.u_id = u_id;
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+
+	SELECT l_name FROM lists WHERE u_id = @user_id;
 END $
 
 DELIMITER $$
-CREATE FUNCTION getUserID(e VARCHAR(255)) RETURNS INT DETERMINISTIC
+CREATE FUNCTION get_user_id(e VARCHAR(255)) RETURNS INT DETERMINISTIC
 BEGIN
 	SET @userID = (
 		SELECT u_id FROM users WHERE u_email = e
@@ -179,14 +181,17 @@ BEGIN
 END $$
 DELIMITER ;
 
-SELECT getUserID("henrique@gmail.com");
-
 DELIMITER $$
-CREATE FUNCTION getPassword(pwID INT) RETURNS VARCHAR(255) DETERMINISTIC 
-BEGIN
+
+CREATE FUNCTION get_password(e VARCHAR(255)) RETURNS VARCHAR(255) DETERMINISTIC 
+BEGIN	
+    SET @pass = (
+		SELECT passwords.pw_code AS password_code FROM accounts 
+        INNER JOIN users ON users.u_id = accounts.u_id
+        INNER JOIN passwords ON passwords.pw_id = accounts.pw_id
+        WHERE u_email = e
+	);
     
-    RETURN (SELECT pw_code FROM passwords WHERE pw_id = pwID);
+    RETURN @pass;
 END $$
 DELIMITER ;
-
-SELECT getPassword(2);
