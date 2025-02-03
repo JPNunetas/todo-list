@@ -25,6 +25,7 @@
 
 .signIn-top a {
     margin: 1% 0% 0% 2%;
+    cursor: pointer;
 }
 
 .back {
@@ -37,7 +38,7 @@
 }
 
 .back-container {
-    background-image: url('../src/Arrow\ 1.svg');
+    background-image: url('../src/img/arrow.svg');
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -83,7 +84,7 @@
 }
 
 .signIn-icon-container {
-    background-image: url('../src/logo.svg');
+    background-image: url('../src/img/logo.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -202,7 +203,7 @@ form input {
 }
 
 .hide {
-    background-image: url('../src/hide-password.svg');
+    background-image: url('../src/img/hide-password.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -218,7 +219,7 @@ form input {
 }
 
 .icon-email {
-    background-image: url('../src/mail.png');
+    background-image: url('../src/img/mail.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -230,7 +231,7 @@ form input {
 }
 
 .icon-password {
-    background-image: url('../src/password-icon.svg');
+    background-image: url('../src/img/password-icon.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -242,7 +243,7 @@ form input {
 }
 
 .show {
-    background-image: url('../src/show.png');
+    background-image: url('../src/img/show.png');
 }
 
 .signIn-center form .error {

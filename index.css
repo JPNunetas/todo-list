@@ -32,7 +32,7 @@
 }
 
 .icon-container {
-    background-image: url('./src/logo.svg');
+    background-image: url('./src/img/logo.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -147,7 +147,7 @@ h1 span {
 }
 
 .gif {
-    background-image: url('./src/gif-hero.gif');
+    background-image: url('./src/img/gif-hero.gif');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60vw;

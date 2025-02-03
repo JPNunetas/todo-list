@@ -3,13 +3,24 @@ const input = document.querySelectorAll('.password');
 const submit = document.getElementById('submit');
 const x = document.getElementsByClassName("input");
 const y = document.getElementsByClassName("label");
+const a = document.getElementById('a');
 let rewrite = x[0].value;
+
+a.addEventListener("click", () => {
+    if (window.history.length <= 1) {
+        a.href = "../index.php";
+        return;
+    }
+    window.history.back();
+});
 
 hide[0].addEventListener("click", () => {
     if (input[0].type == "password") {
         input[0].type = 'text';
         hide[0].classList.add("show");
-    } else {
+        return;
+    } 
+    if (input[0].type == "text") {
         input[0].type = 'password';
         hide[0].classList.remove("show");
     } 
@@ -18,7 +29,9 @@ hide[1].addEventListener("click", () => {
     if (input[1].type == "password") {
         input[1].type = 'text';
         hide[1].classList.add("show");
-    } else {
+        return;
+    }
+    if (input[1].type == "text") {
         input[1].type = 'password';
         hide[1].classList.remove("show");
     }  

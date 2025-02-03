@@ -3,13 +3,24 @@ const input = document.querySelector('.password');
 const submit = document.getElementById('submit');
 const x = document.getElementsByClassName("input");
 const y = document.getElementsByClassName("label");
+const a = document.getElementById('a');
 let rewrite = x[0].value;
+
+a.addEventListener("click", () => {
+    if (window.history.length <= 1) {
+        a.href = "../index.php";
+        return;
+    }
+    window.history.back();
+});
 
 hide.addEventListener("click", () => {
     if (input.type == "password") {
         input.type = 'text';
         hide.classList.add("show");
-    } else {
+        return;
+    } 
+    if (input.type != "password") {
         input.type = 'password';
         hide.classList.remove("show");
     }

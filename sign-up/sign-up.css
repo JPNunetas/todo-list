@@ -55,7 +55,7 @@
 }
 
 .icon-username {
-    background-image: url('../src/user-icon.svg');
+    background-image: url('../src/img/user-icon.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -67,7 +67,7 @@
 }
 
 .icon-confirm-password {
-    background-image: url('../src/password-icon.svg');
+    background-image: url('../src/img/password-icon.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,7 +89,6 @@
 
 @media(min-width:1600px) {
     .signUp-center form input {
-        font-size: 2vw;
         border-radius: 20px;
     }
     .signUp-center form label {
