@@ -10,6 +10,4 @@
     if (!$conn) {
         die('Error on making conection to DB' . mysqli_connect_error());
     }
-
-    echo 'Connection has made!';
 ?>

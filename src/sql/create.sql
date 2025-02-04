@@ -104,13 +104,12 @@ INSERT INTO topics(l_id, t_text) VALUES (2, 'Descansar');
 -- 1. Ver todos os utilizadores
 
 DELIMITER $
-CREATE PROCEDURE all_users()
+CREATE PROCEDURE get_users_info()
 BEGIN
-SELECT accounts.u_id, persons.p_name, persons.p_lastname, passwords.pw_code, accounts.create_at, accounts.update_at 
-FROM accounts
-INNER JOIN persons ON accounts.p_id = persons.p_id
-INNER JOIN users ON accounts.u_id = users.u_id
-INNER JOIN passwords ON accounts.pw_id = passwords.pw_id;
+	SELECT persons.p_name AS first_name, persons.p_lastname AS last_name, users.u_username AS username, users.u_email AS email, accounts.create_at AS create_at, accounts.update_at AS update_at 
+	FROM accounts
+	INNER JOIN persons ON accounts.p_id = persons.p_id
+	INNER JOIN users ON accounts.u_id = users.u_id;
 END $
 
 -- 2. Ver um utilizador em especifico
