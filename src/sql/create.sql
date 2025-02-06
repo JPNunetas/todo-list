@@ -100,7 +100,18 @@ INSERT INTO topics(l_id, t_text) VALUES (2, 'Aspirar');
 INSERT INTO topics(l_id, t_text) VALUES (2, 'Descansar');
 
 -- ====== PROCEDURES ======
-
+DELIMITER $
+CREATE PROCEDURE get_all()
+BEGIN
+	SELECT persons.p_id, persons.p_name, persons.p_lastname, persons.p_age, users.u_id, users.u_username, users.u_email, 
+    passwords.pw_id, passwords.pw_code, lists.l_id, lists.u_id, lists.l_name, topics.t_id, topics.l_id, topics.t_text
+	FROM accounts
+	LEFT JOIN persons ON accounts.p_id = persons.p_id
+	LEFT JOIN users ON accounts.u_id = users.u_id
+    LEFT JOIN passwords ON accounts.pw_id = passwords.pw_id
+    LEFT JOIN lists ON lists.u_id = users.u_id
+    LEFT JOIN topics ON topics.l_id = lists.l_id;
+END $
 -- 1. Ver todos os utilizadores
 
 DELIMITER $
@@ -194,3 +205,135 @@ BEGIN
     RETURN @pass;
 END $$
 DELIMITER ;
+
+DELIMITER $
+CREATE PROCEDURE create_user(u_name VARCHAR(50), email VARCHAR(100), pass VARCHAR(255))
+	BEGIN 
+		INSERT INTO users(u_username,u_email) VALUES (u_name, email);
+		INSERT INTO passwords(pw_code) VALUES (pass);
+        SET @u_id = (SELECT u_id FROM users WHERE u_name = u_username);
+        SET @pw_id = (SELECT pw_id FROM passwords WHERE pass = pw_code);
+        SET @p_id = (SELECT p_id FROM accounts WHERE p_id = LAST_INSERT_ID());
+        INSERT INTO persons(p_id) VALUES (@p_id);
+		INSERT INTO accounts(p_id, u_id, pw_id) VALUES (LAST_INSERT_ID(), @u_id, @pw_id);
+	END $
+    
+DELIMITER $
+CREATE PROCEDURE create_list(e VARCHAR(100),list_name VARCHAR(75))
+	BEGIN 
+		SET @user_id = (
+			SELECT get_user_id(e)
+		);
+        
+		INSERT INTO lists( u_id, l_name) VALUES ( @user_id, list_name);
+	END $
+
+DELIMITER $
+CREATE PROCEDURE create_topics(e VARCHAR(100), list_name VARCHAR(75), topic_name VARCHAR(255))
+	BEGIN 
+		SET @list_id = (
+			SELECT lists.l_id FROM users 
+            INNER JOIN lists ON lists.u_id = users.u_id
+            WHERE e = users.u_email AND list_name = lists.l_name
+		);
+        
+		INSERT INTO topics(l_id, t_text) VALUES (@list_id, topic_name);
+	END $
+    
+DELIMITER $
+CREATE PROCEDURE update_list(e VARCHAR(100),list_name VARCHAR(75))
+	BEGIN
+		UPDATE lists 
+        INNER JOIN users ON users.u_id = lists.u_id
+        SET l_name = list_name
+        WHERE u_email = e;
+	END $
+
+DELIMITER $
+CREATE PROCEDURE update_topics(e VARCHAR(100), list_name VARCHAR(75), topic_name VARCHAR(255), new_topic_name VARCHAR(255))
+	BEGIN
+		UPDATE topics 
+        INNER JOIN lists ON lists.l_id = topics.l_id
+        INNER JOIN users ON users.u_id = lists.u_id
+        SET t_text = new_topic_name
+        WHERE u_email = e AND l_name = list_name AND t_text = topic_name;
+	END $
+    
+DELIMITER $
+CREATE PROCEDURE delete_list(e VARCHAR(100), list_name VARCHAR(75))
+	BEGIN
+		SET @list_id = (
+			SELECT lists.l_id FROM users 
+            INNER JOIN lists ON lists.u_id = users.u_id
+            WHERE e = users.u_email AND list_name = lists.l_name
+		);
+        
+		DELETE topics FROM topics
+        INNER JOIN lists ON lists.l_id = topics.l_id
+        WHERE lists.l_id = @list_id;
+        
+        DELETE FROM lists 
+		WHERE lists.l_id = @list_id;
+	END $
+
+DELIMITER $
+CREATE PROCEDURE delete_user_lists(e VARCHAR(100))
+	BEGIN
+		SET @userID = (
+			SELECT u_id FROM users WHERE u_email = e
+		);
+		DELETE topics FROM topics
+        INNER JOIN lists ON lists.l_id = topics.l_id
+        WHERE lists.u_id = @userID;
+        
+        DELETE lists 
+		FROM lists 
+		INNER JOIN users ON lists.u_id = users.u_id
+		WHERE users.u_id = @userID;
+	END $
+    
+DELIMITER $    
+CREATE PROCEDURE delete_topic(e VARCHAR(100), list_name VARCHAR(75), topic_name VARCHAR(255))
+	BEGIN
+		SET @list_id = (
+			SELECT lists.l_id FROM users 
+            INNER JOIN lists ON lists.u_id = users.u_id
+            WHERE e = users.u_email AND list_name = lists.l_name
+		);
+        SET @topic_id = (
+			SELECT topics.t_id FROM topics 
+            INNER JOIN lists ON lists.l_id = topics.l_id
+            WHERE topic_name = topics.t_text AND list_name = lists.l_name
+		);
+		
+		DELETE topics FROM topics
+        INNER JOIN lists ON lists.l_id = topics.l_id
+        WHERE lists.l_id = @list_id AND topics.t_id = @topic_id;
+	END $
+ 
+DELIMITER $    
+CREATE PROCEDURE delete_list_topics(e VARCHAR(100), list_name VARCHAR(75))
+	BEGIN
+		SET @list_id = (
+			SELECT lists.l_id FROM users 
+            INNER JOIN lists ON lists.u_id = users.u_id
+            WHERE e = users.u_email AND list_name = lists.l_name
+		);
+		
+		DELETE topics FROM topics
+        INNER JOIN lists ON lists.l_id = topics.l_id
+        WHERE lists.l_id = @list_id;
+	END $
+    
+CALL get_user_lists('henrique@gmail.com');
+CALL create_user('JAlves', 'oi@gmail.com', '123');
+CALL create_list('oi@gmail.com', 'O q crlh');
+CALL create_topics('oi@gmail.com', 'Ora más', 'fds2');
+CALL update_list('oi@gmail.com', 'Ora más');
+CALL update_topics('oi@gmail.com','Ora más','fds2','fds');
+CALL delete_user_lists('henrique@gmail.com');
+CALL delete_list('henrique@gmail.com', 'Arrumar a casa');
+CALL delete_topic('henrique@gmail.com', 'Arrumar a casa', 'Aspirar');
+CALL delete_list_topics('henrique@gmail.com', 'Arrumar a casa');
+CALL get_all();
+
