@@ -99,6 +99,21 @@ INSERT INTO topics(l_id, t_text) VALUES (2, 'Limpar o quarto');
 INSERT INTO topics(l_id, t_text) VALUES (2, 'Aspirar');
 INSERT INTO topics(l_id, t_text) VALUES (2, 'Descansar');
 
+-- ====== VIEWS ======
+
+-- 1.Get all users
+
+CREATE VIEW get_all_users AS
+SELECT persons.p_name AS first_name, persons.p_lastname AS last_name, users.u_username AS username, users.u_email AS email, accounts.create_at AS create_at, accounts.update_at AS update_at 
+FROM accounts
+INNER JOIN persons ON accounts.p_id = persons.p_id
+INNER JOIN users ON accounts.u_id = users.u_id;
+
+-- 2.Get all lists
+
+CREATE VIEW get_all_lists AS
+SELECT l_id, l_name FROM lists;
+
 -- ====== FUNCTIONS ======
 
 -- 1. GET USER ID
@@ -132,43 +147,15 @@ DELIMITER ;
 
 -- ====== PROCEDURES ======
 
--- 1. Ver todos os utilizadores
-
-DELIMITER $
-CREATE PROCEDURE get_users_info()
-BEGIN
-	SELECT persons.p_name AS first_name, persons.p_lastname AS last_name, users.u_username AS username, users.u_email AS email, accounts.create_at AS create_at, accounts.update_at AS update_at 
-	FROM accounts
-	INNER JOIN persons ON accounts.p_id = persons.p_id
-	INNER JOIN users ON accounts.u_id = users.u_id;
-END $
-
--- 2. Ver um utilizador em especifico
+-- 1. Ver um utilizador em especifico
 
 DELIMITER $
 CREATE PROCEDURE get_user(e VARCHAR(100))
-BEGIN
-	SET @userID = (
-		SELECT get_user_id(e)
-    );
-    
-	SELECT persons.p_name AS first_name, persons.p_lastname AS last_name, users.u_username AS username, users.u_email AS email, accounts.create_at, accounts.update_at 
-	FROM accounts
-	INNER JOIN persons ON accounts.p_id = persons.p_id
-	INNER JOIN users ON accounts.u_id = users.u_id
-	INNER JOIN passwords ON accounts.pw_id = passwords.pw_id
-	WHERE accounts.u_id = @userID;
+BEGIN    
+	SELECT * FROM get_all_users WHERE email = e;
 END $
 
--- 3. Ver todas as listas
-
-DELIMITER $
-CREATE PROCEDURE all_lists()
-BEGIN
-SELECT l_id, l_name FROM lists; 
-END $
-
--- 4. Ver uma lista em especifico e os seus respetivos tópicos
+-- 2. Ver uma lista em especifico e os seus respetivos tópicos
 
 DELIMITER $
 CREATE PROCEDURE get_list(e VARCHAR(100), ln VARCHAR (75))
@@ -188,7 +175,7 @@ BEGIN
 	END IF;
 END $
 
--- 5. Mostrar um utilizador em especifico com o seu ID, Username e mostrar os ID's das Listas e o nome delas que ele possui
+-- 3. Mostrar um utilizador em especifico com o seu ID, Username e mostrar os ID's das Listas e o nome delas que ele possui
 
 DELIMITER $
 CREATE PROCEDURE get_user_lists(e VARCHAR (100))
@@ -200,7 +187,7 @@ BEGIN
 	SELECT l_name FROM lists WHERE u_id = @user_id;
 END $
 
--- 6. CREATE USER
+-- 4. CREATE USER
 
 DELIMITER $
 CREATE PROCEDURE create_user(username VARCHAR(50), e VARCHAR (100), pw VARCHAR(255))
@@ -220,3 +207,140 @@ BEGIN
         INSERT INTO accounts(p_id, u_id, pw_id) VALUES(@persons_id, @user_inserted_id, LAST_INSERT_ID());
     END IF;
 END $
+
+-- 5. CREATE LIST
+
+DELIMITER $
+CREATE PROCEDURE create_list(e VARCHAR (100), li VARCHAR(75))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+
+	IF @user_id IS NOT NULL THEN
+		INSERT INTO lists(l_name, u_id) VALUES (li, @user_id);
+    END IF;
+END $
+
+-- 6. CREATE TOPICS
+
+DELIMITER $
+CREATE PROCEDURE create_topics(e VARCHAR (100), li VARCHAR(75), top VARCHAR(255))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+
+	IF @user_id AND @list_id IS NOT NULL THEN
+		INSERT INTO topics(l_id, t_text) VALUES (@list_id, top);
+    END IF;
+END $
+
+-- 7. UPDATE LIST
+
+DELIMITER $
+CREATE PROCEDURE update_list(e VARCHAR (100), li VARCHAR(75), new_li VARCHAR(75))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+
+	IF @user_id AND @list_id IS NOT NULL THEN
+		UPDATE lists
+		SET l_name = new_li
+		WHERE l_id = @list_id;
+    END IF;
+END $
+
+-- 8. DELETE LIST
+
+DELIMITER $
+CREATE PROCEDURE delete_list(e VARCHAR (100), li VARCHAR(75))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+    
+	IF @user_id AND @list_id IS NOT NULL THEN
+		DELETE FROM topics
+		WHERE l_id = @list_id;
+		DELETE FROM lists
+		WHERE l_id = @list_id;
+    END IF;
+END $
+
+-- 9. DELETE USER LISTS
+
+DELIMITER $
+CREATE PROCEDURE delete_user_lists(e VARCHAR (100))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    
+	IF @user_id IS NOT NULL THEN
+		DELETE FROM topics
+		WHERE l_id IN (SELECT l_id FROM lists WHERE u_id = @user_id);
+		DELETE FROM lists
+		WHERE u_id = @user_id;
+    END IF;
+END $
+
+-- 10. DELETE TOPIC
+
+DELIMITER $
+CREATE PROCEDURE delete_topic(e VARCHAR (100), li VARCHAR(75), top VARCHAR(255))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+
+	IF @user_id AND @list_id IS NOT NULL THEN
+		DELETE FROM topics 
+        WHERE t_text = top;
+    END IF;
+END $
+
+-- 11. DELETE LIST TOPICS
+
+DELIMITER $
+CREATE PROCEDURE delete_list_topics(e VARCHAR (100), li VARCHAR(75))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+
+	IF @user_id AND @list_id IS NOT NULL THEN
+		DELETE FROM topics 
+        WHERE l_id = @list_id;
+    END IF;
+END $
+
+SELECT * FROM get_all_users;
+SELECT * FROM get_all_lists;
+SELECT * FROM topics;
+CALL get_user('icesann@gmail.com');
+CALL get_list('icesann@gmail.com', 'fds');
+CALL create_list('icesann@gmail.com', 'fds3');
+CALL create_topics('icesann@gmail.com', 'fds3', 'pó crlh');
+CALL update_list('icesann@gmail.com', 'fds', 'pó crlh');
+CALL update_topic('icesann@gmail.com', 'fds', 'pó crlh', 'oieee');
+CALL delete_list('icesann@gmail.com', 'fds');
+CALL delete_user_lists('icesann@gmail.com');
+CALL delete_topic('icesann@gmail.com', 'fds3', 'pó crlh4');
+CALL delete_list_topics('icesann@gmail.com', 'fds3');

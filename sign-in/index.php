@@ -41,7 +41,7 @@
                         </div>
                         <input type="submit" id="submit" value="Sign In">
                         <div class="last-label">
-                            <label><span>Não tem conta? </span><a href="../sign-up/sign-up.php">Sign Up</a></label>
+                            <label><span>Não tem conta? </span><a href="../sign-up/">Sign Up</a></label>
                         </div>
                     </form>
                 </div>
