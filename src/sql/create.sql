@@ -1,4 +1,4 @@
-DROP DATABASE tododb;
+-- DROP DATABASE tododb;
 CREATE DATABASE tododb;
 USE tododb;
 
