@@ -1,0 +1,10 @@
+.none {
+    display: none;
+}
+
+.width {
+    position: absolute;
+    right: 0%;
+
+    width: 70%;
+}

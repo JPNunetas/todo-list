@@ -1,0 +1,58 @@
+.animation-in {
+    animation: menu-father-in 2s ease-in-out;
+}
+
+@keyframes menu-father-in {
+    0% {width: 0%;}
+    50% {width: 100%;}
+    100% {width: 100%;}
+}
+
+.animation-in-stuff {
+    animation: menu-in 2s ease-in-out;
+}
+
+@keyframes menu-in {
+    0% {transform: translateY(2vh); opacity: 0;}
+    50% {transform: translateY(2vh); opacity: 0;}
+    100% {transform: translateY(0vh); opacity: 1;}
+}
+
+.animation-out {
+    animation: menu-father-out 2s ease-in-out;
+}
+
+@keyframes menu-father-out {
+    0% {width: 100%;}
+    50% {width: 100%;}
+    100% {width: 0%;}
+}
+
+.animation-out-stuff {
+    animation: menu-out 2s ease-in-out;
+}
+
+@keyframes menu-out {
+    0% {transform: translateY(0vh); opacity: 1;}
+    50% {transform: translateY(2vh); opacity: 0;}
+    100% {transform: translateY(2vh); opacity: 0;}
+}
+
+.animation-lists1 {
+    animation: list1 1s ease-in-out;
+}
+
+@keyframes list1 {
+    from {width: 100%;}
+    to {width: 70%;}
+}
+
+.animation-lists2 {
+    animation: list2 2s ease-in-out;
+}
+
+@keyframes list2 {
+    0% {width: 70%;}
+    50% {width: 70%;}
+    100% { width: 100%;}
+}

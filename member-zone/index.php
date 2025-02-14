@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="member-zone.css">
+        <link rel="stylesheet" href="animations.css">
+        <link rel="stylesheet" href="classes.css">
         <link rel="stylesheet" href="../index.css">
         <link rel="shortcut icon" href="../src/img/logo.svg" type="image/x-icon">
         
@@ -12,41 +14,43 @@
     </head>
     <body>
         <div class="all">
-            <div id="menu-father" class="menu-father none">
-                <div class="menu">
-                    <div class="logo-menu">
-                        <div class="logo"></div>
-                        <div id="menu-icon" class="menu-icon"></div>
-                    </div>
-                    <div class="input">
-                        <div class="search"></div>
-                        <input type="text" placeholder="Pesquisar nome da lista">
-                    </div>
-                    <div class="gerir">
-                        <h1>Gerir Listas</h1>
-                    </div>
-                    <div class="box">
-                        <div class="more"></div>
-                        <h1>Listas</h1>
-                    </div>
-                    <div class="box">
-                        <div class="delete"></div>
-                        <h1>Apagar Lista</h1>
-                    </div>
-                    <div class="box">
-                        <div class="delete"></div>
-                        <h1>Apagar Listas</h1>
-                    </div>
-                    <div class="gerir">
-                        <h1>User Info</h1>
-                    </div>
-                    <div class="box">
-                        <div class="user"></div>
-                        <h1>Ver Perfil</h1>
-                    </div>
-                    <div class="box">
-                        <div class="log-out"></div>
-                        <h1>Log out</h1>
+            <div id="menu-father-father" class="menu-father-father none">
+                <div id="menu-father" class="menu-father">
+                    <div class="menu" id="menu">
+                        <div class="logo-menu">
+                            <div class="logo"></div>
+                            <div id="menu-icon" class="menu-icon"></div>
+                        </div>
+                        <div class="input">
+                            <div class="search"></div>
+                            <input type="text" placeholder="Pesquisar nome da lista">
+                        </div>
+                        <div class="gerir">
+                            <h1>Gerir Listas</h1>
+                        </div>
+                        <div class="box">
+                            <div class="more"></div>
+                            <h1>Listas</h1>
+                        </div>
+                        <div class="box">
+                            <div class="delete"></div>
+                            <h1>Apagar Lista</h1>
+                        </div>
+                        <div class="box">
+                            <div class="delete"></div>
+                            <h1>Apagar Listas</h1>
+                        </div>
+                        <div class="gerir">
+                            <h1>User Info</h1>
+                        </div>
+                        <div class="box">
+                            <div class="user"></div>
+                            <h1>Ver Perfil</h1>
+                        </div>
+                        <div class="box">
+                            <div class="log-out"></div>
+                            <h1>Log out</h1>
+                        </div>
                     </div>
                 </div>
             </div>
