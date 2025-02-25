@@ -2,12 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="member-zone.css">
-        <link rel="stylesheet" href="animations.css">
-        <link rel="stylesheet" href="classes.css">
-        <link rel="stylesheet" href="../index.css">
+        <link rel="stylesheet" href="./member-zone.css">
+        <link rel="stylesheet" href="./animations.css">
+        <link rel="stylesheet" href="./classes.css">
         <link rel="shortcut icon" href="../src/img/logo.svg" type="image/x-icon">
         
         <title>Member Zone</title>
@@ -135,6 +134,6 @@
                 </div>
             </div>
         </div>
-        <script src="member-zone.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>

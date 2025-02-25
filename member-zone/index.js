@@ -22,7 +22,7 @@ openMenu.addEventListener("click", () => {
     listsFather.classList.add("animation-lists1");
     setTimeout(() => {
         listsFather.classList.remove("animation-lists1");
-    }, 1000);
+    }, 500);
 });
 
 menuIcon.addEventListener("click", () => {
@@ -41,7 +41,7 @@ menuIcon.addEventListener("click", () => {
         menuFatherFather.classList.add("none");
         openMenu.classList.remove("none");
         listsFather.classList.remove("width");
-    }, 2000);
+    }, 1000);
 });
 
 if (window.innerWidth > 720) {

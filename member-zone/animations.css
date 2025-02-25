@@ -1,5 +1,5 @@
 .animation-in {
-    animation: menu-father-in 2s ease-in-out;
+    animation: menu-father-in 1s ease-in-out;
 }
 
 @keyframes menu-father-in {
@@ -9,7 +9,7 @@
 }
 
 .animation-in-stuff {
-    animation: menu-in 2s ease-in-out;
+    animation: menu-in 1s ease-in-out;
 }
 
 @keyframes menu-in {
@@ -19,7 +19,7 @@
 }
 
 .animation-out {
-    animation: menu-father-out 2s ease-in-out;
+    animation: menu-father-out 1s ease-in-out;
 }
 
 @keyframes menu-father-out {
@@ -29,7 +29,7 @@
 }
 
 .animation-out-stuff {
-    animation: menu-out 2s ease-in-out;
+    animation: menu-out 1s ease-in-out;
 }
 
 @keyframes menu-out {
@@ -39,7 +39,7 @@
 }
 
 .animation-lists1 {
-    animation: list1 1s ease-in-out;
+    animation: list1 0.5s ease-in-out;
 }
 
 @keyframes list1 {
@@ -48,7 +48,7 @@
 }
 
 .animation-lists2 {
-    animation: list2 2s ease-in-out;
+    animation: list2 1s ease-in-out;
 }
 
 @keyframes list2 {
