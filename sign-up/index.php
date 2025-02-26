@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,23 +30,23 @@
                             <div class="signIn-icon-container"></div>
                         </div>
                     </a>
-                    <form id="form" action="">
+                    <form id="form" action="../src/api/auth/signup/post.php" method="POST" enctype="application/x-www-form-urlencoded">
                         <div class="box">
                             <div class="icon-username"></div>
                             <label class="label"> Username</label><br>
                         </div>
-                        <input class="input" type="text" maxlength="30">
+                        <input class="input" type="text" name="username" maxlength="30">
                         <div class="box">
                             <div class="icon-email"></div>
                             <label class="label"> Email</label><br>
                         </div>
-                        <input class="input" type="email">
+                        <input class="input" name="email" type="email">
                         <div class="box">
                             <div class="icon-password"></div>
                             <label class="label"> Password</label><br>
                         </div>
                         <div id="box-password">
-                            <input class="password input" type="password" minlength="8" maxlength="30">
+                            <input class="password input" type="password" name="password" minlength="8" maxlength="30">
                             <div class="hide"></div>
                         </div>
                         <div class="box">

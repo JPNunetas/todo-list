@@ -1,3 +1,10 @@
+<?php
+    include_once '../src/api/conn/index.php';
+    include_once '../src/api/utils/redirect.php';
+
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,18 +32,26 @@
                             <div class="signIn-icon-container"></div>
                         </div>
                     </a>
-                    <form id="form" action="">
+                    <form id="form" action="../src/api/auth/signin/get.php" method="POST" enctype="application/x-www-form-urlencoded">
                         <div class="box">
                             <div class="icon-email"></div>
                             <label class="label"> Email</label><br>
                         </div>
-                        <input class="input" type="email" maxlength="30">
+                        <input class="input" type="email" name='email' maxlength="30">
                         <div class="box">
                             <div class="icon-password"></div>
                             <label class="label"> Password</label><br>
                         </div>
                         <div id="box-password">
-                            <input class="password input" type="password" minlength="8" maxlength="30">
+                            <?php
+                                if(!isset($_SESSION['error_password'])) {
+                                    echo '<input class="password input error" placeholder="Password Incorreta" type="password" name="password" minlength="8" maxlength="30">';
+                                } 
+                                
+                                if (isset($_SESSION['error_password'])) {
+                                    echo '<input class="password input" type="password" name="password" minlength="8" maxlength="30">';
+                                }
+                            ?>
                             <div class="hide"></div>
                         </div>
                         <input type="submit" id="submit" value="Sign In">
