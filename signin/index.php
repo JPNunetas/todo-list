@@ -44,11 +44,11 @@
                         </div>
                         <div id="box-password">
                             <?php
-                                if(!isset($_SESSION['error_password'])) {
+                                if(isset($_SESSION['error_password'])) {
                                     echo '<input class="password input error" placeholder="Password Incorreta" type="password" name="password" minlength="8" maxlength="30">';
-                                } 
+                                }
                                 
-                                if (isset($_SESSION['error_password'])) {
+                                if (!isset($_SESSION['error_password'])) {
                                     echo '<input class="password input" type="password" name="password" minlength="8" maxlength="30">';
                                 }
                             ?>
@@ -56,7 +56,7 @@
                         </div>
                         <input type="submit" id="submit" value="Sign In">
                         <div class="last-label">
-                            <label><span>Não tem conta? </span><a href="../sign-up/">Sign Up</a></label>
+                            <label><span>Não tem conta? </span><a href="../signup/">Sign Up</a></label>
                         </div>
                     </form>
                 </div>

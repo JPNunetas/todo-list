@@ -12,7 +12,7 @@ $getUser = 'CALL get_user(\'' . $email .'\')';
 $getUserQuery = mysqli_query($conn, $getUser);
 
 if (mysqli_num_rows($getUserQuery) > 0) {
-    redirect('../../../../sign-up/');
+    redirect('../../../../signup/');
 }
 
 mysqli_free_result($getUserQuery);
@@ -22,6 +22,6 @@ $createUser = 'CALL create_user(\'' . $username . '\', \'' . $email . '\', \'' .
 $createUserQuery = mysqli_query($conn, $createUser);
 
 if($createUserQuery) {
-    redirect('../../../../sign-in/');
+    redirect('../../../../signin/');
 }
 ?>

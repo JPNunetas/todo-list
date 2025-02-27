@@ -85,7 +85,7 @@ INSERT INTO accounts(p_id, u_id, pw_id) VALUES (2, 2, 2);
 -- INSERT User Henrique
 INSERT INTO persons(p_name, p_lastname, p_age) VALUES ('Henrique', 'Bombado', 18);
 INSERT INTO users(u_username,u_email) VALUES ('hq37', 'henrique@gmail.com');
-INSERT INTO passwords(pw_code) VALUES ('hq123');
+INSERT INTO passwords(pw_code) VALUES ('hq123456789');
 INSERT INTO accounts(p_id, u_id, pw_id) VALUES (3, 3, 3);
 
 -- INSERT LISTS
@@ -331,16 +331,21 @@ BEGIN
     END IF;
 END $
 
-SELECT * FROM get_all_users;
-SELECT * FROM get_all_lists;
-SELECT * FROM topics;
-CALL get_user('icesann@gmail.com');
-CALL get_list('icesann@gmail.com', 'fds');
-CALL create_list('icesann@gmail.com', 'fds3');
-CALL create_topics('icesann@gmail.com', 'fds3', 'pó crlh');
-CALL update_list('icesann@gmail.com', 'fds', 'pó crlh');
-CALL update_topic('icesann@gmail.com', 'fds', 'pó crlh', 'oieee');
-CALL delete_list('icesann@gmail.com', 'fds');
-CALL delete_user_lists('icesann@gmail.com');
-CALL delete_topic('icesann@gmail.com', 'fds3', 'pó crlh4');
-CALL delete_list_topics('icesann@gmail.com', 'fds3');
+-- 12. Get Lists Topics
+
+DELIMITER $
+CREATE PROCEDURE get_list_topics(e VARCHAR (100), ln VARCHAR(75))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = ln
+    );
+
+	SELECT topics.t_text AS t_text
+    FROM lists
+    INNER JOIN topics ON topics.l_id = lists.l_id
+    WHERE lists.l_id = @list_id;
+END $

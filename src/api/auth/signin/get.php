@@ -20,8 +20,8 @@ $dbPasswordEncrypted = password_hash($row['dbpassword'], PASSWORD_DEFAULT);
 
 if(!password_verify($password, $dbPasswordEncrypted)) {
     $_SESSION['error_password'] = 'Password Incorreta!';
-    redirect('../../../../sign-in/');
+    redirect('../../../../signin/');
 }
 
-redirect('../../../../member-zone/');
+redirect('../../../../memberzone/');
 ?>

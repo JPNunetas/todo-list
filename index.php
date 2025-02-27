@@ -16,7 +16,7 @@
                         <div class="icon-container"></div>
                     </div>
                 </a>
-                <a href="./sign-in/">
+                <a href="./signin/">
                     <div class="sign-in">
                         <h1>Sign In</h1>
                     </div>
