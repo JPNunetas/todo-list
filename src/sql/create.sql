@@ -331,7 +331,7 @@ BEGIN
     END IF;
 END $
 
--- 12. Get Lists Topics
+-- 12. GET LIST TOPICS
 
 DELIMITER $
 CREATE PROCEDURE get_list_topics(e VARCHAR (100), ln VARCHAR(75))
@@ -348,4 +348,76 @@ BEGIN
     FROM lists
     INNER JOIN topics ON topics.l_id = lists.l_id
     WHERE lists.l_id = @list_id;
+END $
+
+-- 13. UPDATE TOPICS 
+
+DELIMITER $
+CREATE PROCEDURE update_topic(e VARCHAR (100), li VARCHAR(75), top VARCHAR(255), new_top VARCHAR(255))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id AND l_name = li
+    );
+
+	IF @user_id AND @list_id IS NOT NULL THEN
+		UPDATE topics
+		SET t_text = new_top
+		WHERE t_text = top;
+    END IF;
+END $
+
+-- 14. UPDATE USER INFO
+
+DELIMITER $
+CREATE PROCEDURE update_user_info(e VARCHAR (100), firstname VARCHAR(30), lastname VARCHAR(30), username VARCHAR(50), pw VARCHAR(255))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+
+	IF @user_id IS NOT NULL THEN
+		IF firstname IS NOT NULL THEN
+			UPDATE persons
+            SET p_name = firstname
+            WHERE p_id = @user_id;
+        END IF;
+        
+        IF lastname IS NOT NULL THEN
+			UPDATE persons
+            SET p_lastname = lastname
+            WHERE p_id = @user_id;
+        END IF;
+        
+        IF username IS NOT NULL THEN
+			UPDATE users
+            SET u_username = username
+            WHERE u_id = @user_id;
+        END IF;
+        
+        IF pw IS NOT NULL THEN
+			UPDATE passwords
+            SET pw_code = pw
+            WHERE pw_id = @user_id;
+        END IF;
+    END IF;
+END $
+
+-- 15. DELETE USER
+
+DELIMITER $
+CREATE PROCEDURE delete_user(e VARCHAR (100))
+BEGIN
+	SET @user_id = (
+		SELECT get_user_id(e)
+    );
+    
+	DELETE FROM topics
+	WHERE l_id IN (SELECT l_id FROM lists WHERE u_id = @user_id);
+	DELETE FROM lists
+	WHERE u_id = @user_id;
+    DELETE FROM accounts
+    WHERE u_id = @user_id;
 END $

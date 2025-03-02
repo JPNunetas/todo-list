@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="sign-up.css">
-        <link rel="stylesheet" href="../sign-in/sign-in.css">
+        <link rel="stylesheet" href="../signin/sign-in.css">
         <link rel="shortcut icon" href="../src/img/logo.svg" type="image/x-icon">
 
         <title>Sign In</title>
