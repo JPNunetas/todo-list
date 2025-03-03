@@ -287,9 +287,13 @@ BEGIN
 		SELECT get_user_id(e)
     );
     
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id
+	);
+    
 	IF @user_id IS NOT NULL THEN
 		DELETE FROM topics
-		WHERE l_id IN (SELECT l_id FROM lists WHERE u_id = @user_id);
+		WHERE l_id = @list_id;
 		DELETE FROM lists
 		WHERE u_id = @user_id;
     END IF;
@@ -377,18 +381,26 @@ BEGIN
 	SET @user_id = (
 		SELECT get_user_id(e)
     );
+    
+    SET @persons_id = (
+		SELECT p_id FROM accounts WHERE u_id = @user_id
+    );
 
+	SET @password_id = (
+		SELECT pw_id FROM accounts WHERE u_id = @user_id
+    );
+    
 	IF @user_id IS NOT NULL THEN
 		IF firstname IS NOT NULL THEN
 			UPDATE persons
             SET p_name = firstname
-            WHERE p_id = @user_id;
+            WHERE p_id = @persons_id;
         END IF;
         
         IF lastname IS NOT NULL THEN
 			UPDATE persons
             SET p_lastname = lastname
-            WHERE p_id = @user_id;
+            WHERE p_id = @persons_id;
         END IF;
         
         IF username IS NOT NULL THEN
@@ -400,7 +412,7 @@ BEGIN
         IF pw IS NOT NULL THEN
 			UPDATE passwords
             SET pw_code = pw
-            WHERE pw_id = @user_id;
+            WHERE pw_id = @password_id;
         END IF;
     END IF;
 END $
@@ -414,10 +426,16 @@ BEGIN
 		SELECT get_user_id(e)
     );
     
+    SET @list_id = (
+		SELECT l_id FROM lists WHERE u_id = @user_id
+	);
+    
 	DELETE FROM topics
-	WHERE l_id IN (SELECT l_id FROM lists WHERE u_id = @user_id);
+	WHERE l_id = @list_id;
+    
 	DELETE FROM lists
 	WHERE u_id = @user_id;
+    
     DELETE FROM accounts
     WHERE u_id = @user_id;
 END $
