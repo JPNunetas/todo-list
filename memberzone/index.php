@@ -105,6 +105,32 @@
                     ?>
                 </div>
             </div>
+
+            <div class="edit-menu-container none" id="edit-menu-container">
+                <div class="edit-menu">
+                    <div class="edit-top">
+                        <input type="text" value="cjdjbvhbvjhvhdndn" maxlength="15">
+                        <div class="close" id="close"></div>
+                    </div>
+
+                    <div class="edit-topics" id="edit-topics">
+                        <div class="edit-topics-top">
+                            <input type="text" id="popup-input" placeholder="Insira um tópico" maxlength="30">
+                            <div class="add" id="add">
+                                <div class="add-container"></div>
+                            </div>
+                        </div>
+
+                        <div class="all-lists" id="all-lists"></div>
+
+                        <div class="popup-submit-father">
+                            <div class="popup-submit">
+                                <p>Guardar Alterações</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="index.js"></script>
     </body>

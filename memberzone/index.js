@@ -4,6 +4,15 @@ const content = document.querySelectorAll(".menu > *");
 const menuIcon = document.getElementById("menu-icon");
 const listsFather = document.getElementById("lists-father");
 const openMenu = document.getElementById("open-menu");
+const edit = document.getElementsByClassName("edit");
+const list = document.getElementsByClassName("list");
+const editMenuContainer = document.getElementById("edit-menu-container");
+
+// POP UP Vars
+const closeBt = document.getElementById("close");
+const inputPopUp = document.getElementById("popup-input");
+const add = document.getElementById("add");
+const editTopics = document.getElementById("all-lists");
 
 openMenu.addEventListener("click", () => {
     menuFatherFather.classList.remove("none");
@@ -49,5 +58,67 @@ if (window.innerWidth > 720) {
     listsFather.classList.add("width");
     openMenu.classList.add("none");
 }
+for (let i = 0; i < edit.length; i++) {
+    edit[i].addEventListener("click", () => {
+        editMenuContainer.classList.remove("none");
 
+        const editInput = document.querySelector(".edit-top input");
+        editInput.value = list[i].querySelector("h1").textContent;
 
+        const listItems = list[i].querySelectorAll("li");
+        listItems.forEach(li => {
+            const tA = document.createElement("div");
+            const point = document.createElement("div");
+            const topic = document.createElement("div");
+            const p = document.createElement("p");
+            const dlt = document.createElement("div");
+
+            tA.classList.add("topic-all");
+            point.classList.add("point");
+            topic.classList.add("topic");
+            dlt.classList.add("delete-topic");
+
+            p.textContent = li.textContent;
+
+            editTopics.appendChild(tA);
+            tA.appendChild(point);
+            tA.appendChild(topic);
+            topic.appendChild(p);
+            topic.appendChild(dlt);
+        });
+    });
+}
+
+closeBt.addEventListener("click", () => {
+    const topicsToRemove = editTopics.querySelectorAll(".topic-all");
+    topicsToRemove.forEach(topic => topic.remove());
+
+    editMenuContainer.classList.add("none");
+});
+
+add.addEventListener("click", () => {
+    const tA = document.createElement("div");
+    const point = document.createElement("div");
+    const topic = document.createElement("div");
+    const p = document.createElement("p");
+    const dlt = document.createElement("div");
+
+    tA.classList.add("topic-all");
+    point.classList.add("point");
+    topic.classList.add("topic");
+    dlt.classList.add("delete-topic");
+
+    p.textContent = inputPopUp.value;
+
+    editTopics.appendChild(tA);
+    tA.appendChild(point);
+    tA.appendChild(topic);
+    topic.appendChild(p);
+    topic.appendChild(dlt);
+});
+
+editTopics.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-topic")) {
+        event.target.closest(".topic-all").remove();
+    }
+});
