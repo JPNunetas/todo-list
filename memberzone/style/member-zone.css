@@ -56,7 +56,7 @@
 }
 
 .logo {
-    background-image: url('../src/img/logo.svg');
+    background-image: url('../../src/img/logo.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -70,7 +70,7 @@
 }
 
 .menu-icon {
-    background-image: url('../src/img/menu-icon.svg');
+    background-image: url('../../src/img/menu-icon.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -110,7 +110,7 @@
 }
 
 .search {
-    background-image: url('../src/img/search-icon.svg');
+    background-image: url('../../src/img/search-icon.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -173,7 +173,7 @@
 }
 
 .more {
-    background-image: url('../src/img/add-icon.svg');
+    background-image: url('../../src/img/add-icon.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -187,7 +187,7 @@
 }
 
 .delete {
-    background-image: url('../src/img/delete-icon.svg');
+    background-image: url('../../src/img/delete-icon.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -201,7 +201,7 @@
 }
 
 .user {
-    background-image: url('../src/img/user-icon.png');
+    background-image: url('../../src/img/user-icon.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -215,7 +215,7 @@
 }
 
 .log-out {
-    background-image: url('../src/img/log-out.svg');
+    background-image: url('../../src/img/log-out.svg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -290,7 +290,7 @@
 }
 
 .edit {
-    background-image: url('../src/img/pen.png');
+    background-image: url('../../src/img/pen.png');
     background-position: center;
     background-size: 65%;
     background-repeat: no-repeat;
@@ -310,7 +310,7 @@
 
 .open-menu {
     background-color: rgb(217, 217, 217);
-    background-image: url('../src/img/menu-icon.svg');
+    background-image: url('../../src/img/menu-icon.svg');
     background-position: center;
     background-size: 70%;
     background-repeat: no-repeat;
@@ -357,7 +357,7 @@
     height: 20%;
 }
 
-.edit-top input {
+.edit-top h1 {
     font-size: clamp(24px, 4vw, 200px);
     font-weight: bold;
 
@@ -369,7 +369,7 @@
 }
 
 .close {
-    background-image: url('../src/img/close.png');
+    background-image: url('../../src/img/close.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -433,7 +433,7 @@
 }
 
 .add-container {
-    background-image: url('../src/img/add.png');
+    background-image: url('../../src/img/add.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -493,7 +493,7 @@
 }
 
 .delete-topic {
-    background-image: url('../src/img/delete.png');
+    background-image: url('../../src/img/delete.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -539,6 +539,70 @@
     text-align-last: center;
 }
 
+
+
+#edit-menu-container-add-list .edit-menu {
+    height: 30%;
+}
+
+#edit-menu-container-add-list .edit-top {
+    height: 40%;
+}
+
+#edit-menu-container-add-list .edit-topics {
+    height: 60%;
+}
+
+#edit-menu-container-add-list .edit-topics-top {
+    height: 30%;
+}
+
+#edit-menu-container-add-list .popup-submit-father {
+    height: 70%;
+}
+
+#edit-menu-container-add-list .edit-topics-top {
+    padding-left: 0%;
+    justify-content: center;
+}
+
+#edit-menu-container-add-list input {
+    width: 95%;
+}
+
+#edit-menu-container-delete-list .edit-menu {
+    height: 30%;
+}
+
+#edit-menu-container-delete-list .edit-top {
+    height: 40%;
+}
+
+#edit-menu-container-delete-list .edit-topics {
+    height: 60%;
+}
+
+#edit-menu-container-delete-list .edit-topics-top {
+    height: 30%;
+}
+
+#edit-menu-container-delete-list .popup-submit-father {
+    height: 70%;
+}
+
+#edit-menu-container-delete-list .popup-submit {
+    background-color: red;
+}
+
+#edit-menu-container-delete-list .edit-topics-top {
+    padding-left: 0%;
+    justify-content: center;
+}
+
+#edit-menu-container-delete-list input {
+    width: 95%;
+}
+
 .menu-icon:hover, .edit:hover, .close:hover, .add:hover, .delete-topic:hover, .popup-submit:hover{
     transform: scale(0.9);
     cursor: pointer;
@@ -551,6 +615,8 @@
 .box:hover h1 {
     transform: translateX(4px);
 }
+
+
 
 @media(max-width:720px) {
     .menu-father-father {
