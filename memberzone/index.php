@@ -146,11 +146,11 @@
 
                     <div class="edit-topics" id="edit-topics">
                         <div class="edit-topics-top">
-                            <input type="text" placeholder="Insira o nome da lista" maxlength="30">
+                            <input id="add-list-input" type="text" placeholder="Insira o nome da lista" maxlength="30">
                         </div>
 
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="add-list-btn">
                                 <p>Guardar Alterações</p>
                             </div>
                         </div>

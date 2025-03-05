@@ -67,28 +67,6 @@ for (let i = 0; i < edit.length; i++) {
 
         const editInput = document.querySelector(".edit-top h1");
         editInput.innerText = list[i].querySelector("h1").innerText;
-
-        const listItems = list[i].querySelectorAll("li");
-        listItems.forEach(li => {
-            const tA = document.createElement("div");
-            const point = document.createElement("div");
-            const topic = document.createElement("div");
-            const p = document.createElement("p");
-            const dlt = document.createElement("div");
-
-            tA.classList.add("topic-all");
-            point.classList.add("point");
-            topic.classList.add("topic");
-            dlt.classList.add("delete-topic");
-
-            p.textContent = li.textContent;
-
-            allLists.appendChild(tA);
-            tA.appendChild(point);
-            tA.appendChild(topic);
-            topic.appendChild(p);
-            topic.appendChild(dlt);
-        });
     });
 }
 
@@ -104,12 +82,10 @@ add.addEventListener("click", () => {
     const point = document.createElement("div");
     const topic = document.createElement("div");
     const p = document.createElement("p");
-    const dlt = document.createElement("div");
 
     tA.classList.add("topic-all");
     point.classList.add("point");
     topic.classList.add("topic");
-    dlt.classList.add("delete-topic");
 
     p.textContent = inputPopUp.value;
 
@@ -117,7 +93,6 @@ add.addEventListener("click", () => {
     tA.appendChild(point);
     tA.appendChild(topic);
     topic.appendChild(p);
-    topic.appendChild(dlt);
 });
 
 allLists.addEventListener("click", (event) => {

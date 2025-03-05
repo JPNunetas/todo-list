@@ -44,3 +44,12 @@ const endpointDeleteAllLists = document.getElementById("delete-all-lists-btn");
 endpointDeleteAllLists.addEventListener("click", () => {
     location.href = "../../src/api/all-lists/delete.php";
 });
+
+// EndPoint to Add List
+
+const endpointAddLists = document.getElementById("add-list-btn");
+endpointAddLists.addEventListener("click", () => {
+    const listName = document.getElementById("add-list-input");
+
+    location.href = "../../src/api/lists/push.php?listName=" + listName.value;
+});
