@@ -77,24 +77,6 @@ closeBtAllLists.addEventListener("click", () => {
     editMenuContainer.classList.add("none");
 });
 
-add.addEventListener("click", () => {
-    const tA = document.createElement("div");
-    const point = document.createElement("div");
-    const topic = document.createElement("div");
-    const p = document.createElement("p");
-
-    tA.classList.add("topic-all");
-    point.classList.add("point");
-    topic.classList.add("topic");
-
-    p.textContent = inputPopUp.value;
-
-    allLists.appendChild(tA);
-    tA.appendChild(point);
-    tA.appendChild(topic);
-    topic.appendChild(p);
-});
-
 allLists.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-topic")) {
         event.target.closest(".topic-all").remove();

@@ -114,22 +114,19 @@
             <div class="edit-menu-container none" id="edit-menu-container-all-lists">
                 <div class="edit-menu">
                     <div class="edit-top">
-                        <h1></h1>
+                        <h1 id="list-name-h1"></h1>
                         <div class="close" id="close"></div>
                     </div>
 
                     <div class="edit-topics">
                         <div class="edit-topics-top">
-                            <input type="text" id="popup-input" placeholder="Insira um tópico" maxlength="30">
-                            <div class="add" id="add">
-                                <div class="add-container"></div>
-                            </div>
+                            <input type="text" id="popup-input topic-add-input" placeholder="Insira um tópico" maxlength="30">
                         </div>
 
                         <div class="all-lists" id="all-lists"></div>
 
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="add-topic-btn">
                                 <p>Guardar Alterações</p>
                             </div>
                         </div>

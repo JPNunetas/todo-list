@@ -53,3 +53,13 @@ endpointAddLists.addEventListener("click", () => {
 
     location.href = "../../src/api/lists/push.php?listName=" + listName.value;
 });
+
+// EndPoint to Add Topics
+
+const endpointAddTopics = document.getElementById("add-topic-btn");
+endpointAddTopics.addEventListener("click", () => {
+    const listName = document.getElementById("list-name-h1");
+    const topicName = document.getElementById("topic-add-input");
+
+    location.href = "../../src/api/topics/push.php?listName=" + listName.innerText + "&topicName=" + topicName.value;
+});
