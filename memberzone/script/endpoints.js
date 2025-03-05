@@ -28,3 +28,12 @@ endpointEditList.addEventListener("click", () => {
 
     location.href = "../../src/api/lists/put.php?listName=" + listNameToEdit.value + "&editListName=" + editListName.value;
 });
+
+// EndPoint to Delete a List
+
+const endpointDeleteList = document.getElementById("delete-list-btn");
+endpointDeleteList.addEventListener("click", () => {
+    const listDeleteName = document.getElementById("delete-list-input");
+
+    location.href = "../../src/api/lists/delete.php?listName=" + listDeleteName.value;
+});

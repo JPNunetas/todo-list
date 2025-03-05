@@ -221,11 +221,11 @@
 
                     <div class="edit-topics" id="edit-topics">
                         <div class="edit-topics-top">
-                            <input type="text" placeholder="Insira o nome da lista a apagar" maxlength="30">
+                            <input id="delete-list-input" type="text" placeholder="Insira o nome da lista a apagar" maxlength="30">
                         </div>
 
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="delete-list-btn">
                                 <p>Apagar Lista</p>
                             </div>
                         </div>
