@@ -37,3 +37,10 @@ endpointDeleteList.addEventListener("click", () => {
 
     location.href = "../../src/api/lists/delete.php?listName=" + listDeleteName.value;
 });
+
+// EndPoint to Delete all Lists
+
+const endpointDeleteAllLists = document.getElementById("delete-all-lists-btn");
+endpointDeleteAllLists.addEventListener("click", () => {
+    location.href = "../../src/api/all-lists/delete.php";
+});

@@ -267,7 +267,7 @@
 
                     <div class="edit-topics" id="edit-topics">
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="delete-all-lists-btn">
                                 <p>Sim</p>
                             </div>
                         </div>

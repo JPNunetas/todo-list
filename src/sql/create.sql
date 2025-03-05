@@ -222,6 +222,8 @@ BEGIN
     END IF;
 END $
 
+
+
 -- 6. CREATE TOPICS
 
 DELIMITER $
@@ -272,7 +274,7 @@ BEGIN
     
 	IF @user_id AND @list_id IS NOT NULL THEN
 		DELETE FROM topics
-		WHERE l_id = @list_id;
+		WHERE l_id IN (@list_id);
 		DELETE FROM lists
 		WHERE l_id = @list_id;
     END IF;
@@ -287,13 +289,12 @@ BEGIN
 		SELECT get_user_id(e)
     );
     
-    SET @list_id = (
-		SELECT l_id FROM lists WHERE u_id = @user_id
-	);
-    
 	IF @user_id IS NOT NULL THEN
-		DELETE FROM topics
-		WHERE l_id = @list_id;
+		DELETE t
+        FROM topics t
+        JOIN lists l ON t.l_id = l.l_id
+        WHERE l.u_id = @user_id;
+        
 		DELETE FROM lists
 		WHERE u_id = @user_id;
     END IF;
