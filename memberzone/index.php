@@ -238,11 +238,15 @@
 
                     <div class="edit-topics" id="edit-topics">
                         <div class="edit-topics-top">
-                            <input type="text" placeholder="Insira o nome do tópico a apagar" maxlength="30">
+                            <input id="input-search-list-delete-topic" type="text" placeholder="Insira o nome do tópico a apagar" maxlength="30">
+                        </div>
+
+                        <div class="edit-topics-top">
+                            <input id="input-delete-topic" type="text" placeholder="Insira o nome do tópico a apagar" maxlength="30">
                         </div>
 
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="delete-topic-btn">
                                 <p>Apagar Tópico</p>
                             </div>
                         </div>

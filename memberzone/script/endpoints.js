@@ -8,3 +8,13 @@ endpointEditTopicBtn.addEventListener("click", () => {
 
     location.href = "../../src/api/topics/put.php?listName=" + listName.value + "&topicName=" + topicName.value + "&newTopicName=" + newTopicName.value;
 });
+
+// EndPoint to Delete a Topic
+
+const endpointDeleteTopic = document.getElementById("delete-topic-btn");
+endpointDeleteTopic.addEventListener("click", () => {
+    const listNameToDeleteTopic = document.getElementById("input-search-list-delete-topic");
+    const deleteTopic = document.getElementById("input-delete-topic");
+
+    location.href = "../../src/api/topics/delete.php?listName=" + listNameToDeleteTopic.value + "&deleteTopic=" + deleteTopic.value;
+});
