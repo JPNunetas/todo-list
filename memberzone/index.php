@@ -167,11 +167,15 @@
 
                     <div class="edit-topics" id="edit-topics">
                         <div class="edit-topics-top">
-                            <input type="text" placeholder="Insira o novo nome da lista" maxlength="30">
+                            <input id="edit-list-list-name" type="text" placeholder="Insira o nome da lista a renomear" maxlength="30">
+                        </div>
+
+                        <div class="edit-topics-top">
+                            <input id="edit-list-list-rename" type="text" placeholder="Insira o novo nome da lista" maxlength="30">
                         </div>
 
                         <div class="popup-submit-father">
-                            <div class="popup-submit">
+                            <div class="popup-submit" id="list-edit-btn">
                                 <p>Guardar Alterações</p>
                             </div>
                         </div>

@@ -18,3 +18,13 @@ endpointDeleteTopic.addEventListener("click", () => {
 
     location.href = "../../src/api/topics/delete.php?listName=" + listNameToDeleteTopic.value + "&deleteTopic=" + deleteTopic.value;
 });
+
+// EndPoint to Edit a List
+
+const endpointEditList = document.getElementById("list-edit-btn");
+endpointEditList.addEventListener("click", () => {
+    const listNameToEdit = document.getElementById("edit-list-list-name");
+    const editListName = document.getElementById("edit-list-list-rename");
+
+    location.href = "../../src/api/lists/put.php?listName=" + listNameToEdit.value + "&editListName=" + editListName.value;
+});
